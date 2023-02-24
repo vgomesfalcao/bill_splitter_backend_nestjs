@@ -1,29 +1,49 @@
 import { Injectable } from '@nestjs/common'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
+import * as bcrypt from 'bcrypt'
 import { UserRepository } from './repositories/user.repository'
 
 @Injectable()
 export class UserService {
   constructor(private readonly repository: UserRepository) {}
 
-  create(createUserDto: CreateUserDto) {
-    return this.repository.create(createUserDto)
+  async create(createUserDto: CreateUserDto) {
+    createUserDto.password = await bcrypt.hash(createUserDto.password, 10)
+    const data = await this.repository.create(createUserDto)
+    data.password = undefined
+    return data
   }
 
-  findAll() {
-    return this.repository.findAll()
+  async findAll() {
+    const data = await this.repository.findAll()
+    for (const item of data) {
+      item.password = undefined
+    }
+    return data
   }
 
-  findOne(id: number) {
-    return this.repository.findOne(id)
+  async findOne(id: number) {
+    const data = await this.repository.findOne(id)
+    data.password = undefined
+    return data
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return this.repository.update(id, updateUserDto)
+  async findByEmail(email: string) {
+    const data = await this.repository.findByEmail(email)
+
+    return data
   }
 
-  remove(id: number) {
-    return this.repository.remove(id)
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const data = await this.repository.update(id, updateUserDto)
+    data.password = undefined
+    return data
+  }
+
+  async remove(id: number) {
+    const data = await this.repository.remove(id)
+    data.password = undefined
+    return data
   }
 }

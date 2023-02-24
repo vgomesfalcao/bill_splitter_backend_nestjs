@@ -4,11 +4,9 @@ This package contains the NestJS backend for a Flutter app that can be used to s
 ## Installation
 - Clone the repository: git clone https://github.com/vgomesfalcao/bill-splitter.git.
 - Install the dependencies: npm install.
-## Usage
-- To build the project, run: `npm run build`.
-- To start the project, run: `npm start`.
-- To start the project in development mode, run: `npm run start:dev`.
-- To run the tests, run: `npm test`.
+## Usage Docker
+- To build the project, run: `docker-compose up`.
+- The localhost will be accessible at 3000 port
 ## Scripts
 This package includes the following scripts:
 
