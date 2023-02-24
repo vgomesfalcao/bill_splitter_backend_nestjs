@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
-import { UserRepository } from './repositories/user.repository'
 import * as bcrypt from 'bcrypt'
+import { UserRepository } from './repositories/user.repository'
 
 @Injectable()
 export class UserService {
@@ -26,6 +26,14 @@ export class UserService {
   async findOne(id: number) {
     const data = await this.repository.findOne(id)
     data.password = undefined
+    return data
+  }
+
+  async findByEmail(email: string) {
+    const data = await this.repository.findByEmail(email)
+
+    data.password = undefined
+
     return data
   }
 
