@@ -32,8 +32,6 @@ export class UserService {
   async findByEmail(email: string) {
     const data = await this.repository.findByEmail(email)
 
-    data.password = undefined
-
     return data
   }
 
