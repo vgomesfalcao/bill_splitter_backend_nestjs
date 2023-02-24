@@ -36,3 +36,6 @@ lerna-debug.log*
 
 # Dbdata folder
 .docker/dbdata
+
+# dotenv
+.env
