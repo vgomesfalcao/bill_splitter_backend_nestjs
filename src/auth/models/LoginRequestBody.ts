@@ -6,5 +6,6 @@ export class LoginRequestBody {
   email: string
 
   @IsString()
+  @IsNotEmpty()
   password: string
 }
