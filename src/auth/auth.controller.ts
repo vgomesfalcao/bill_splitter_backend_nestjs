@@ -22,4 +22,10 @@ export class AuthController {
   login(@Request() req: AuthRequest) {
     return this.authService.login(req.user)
   }
+
+  @Post('validate')
+  @HttpCode(HttpStatus.ACCEPTED)
+  validate() {
+    return ''
+  }
 }
