@@ -1,14 +1,18 @@
-version: '3'
+version: "3"
 
 services:
   app:
     labels:
       - "traefik.enable=true"
       - "traefik.frontend.rule=Host:134.65.245.130"
-
-  reverse-proxy:
-    image: traefik
-    command: --api --docker.exposedbydefault=false
+      - "traefik.http.routers.whoami.entrypoints=web"
+  traefik:
+    image: "traefik:v2.9"
+    command:
+      - "--api"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
     ports:
       - "80:80"
       - "8080:8080"
