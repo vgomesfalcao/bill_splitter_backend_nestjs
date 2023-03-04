@@ -7,7 +7,5 @@ services:
     container_name: bill-splitter-backend-app
     ports:
       - '3000:3000'
-      - '5555:5555'
-      - '5432:5432'
     volumes:
       - .:/home/node/app

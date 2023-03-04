@@ -2,19 +2,5 @@ version: "3"
 
 services:
   app:
-    labels:
-      - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:134.65.245.130"
-      - "traefik.http.routers.whoami.entrypoints=web"
-  traefik:
-    image: "traefik:v2.9"
-    command:
-      - "--api"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
     ports:
-      - "80:80"
-      - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "80:3000"
